@@ -19,9 +19,9 @@ Start the service with Docker Compose:
 The API is now accessible at http://localhost:8080/api/configs
 
 ## API Usage
-Retrieve configurations:
+Retrieve configurations example:
 
-``` GET /api/configs?package=<package_name> ```
+``` GET /api/configs?package=com.softinit.iquitos.mainapp ```
 
 ## Testing
 
