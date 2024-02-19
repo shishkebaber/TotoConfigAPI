@@ -9,6 +9,13 @@ Dockerized setup including MongoDB.
 ## Requirements
 Docker and Docker Compose
 
+## TODO
+Implement other CRUD endpoints, with validation, authentication middleware.
+Custom logging 
+More comprehencive application config, instead of simple .env usage.
+More test-cases, unit tests and integration tests using docker-compose.
+Proper IP2Country database storing, probably in some cloud storage.
+
 ## Quick Start
 Clone the repository and navigate into the project directory.
 
