@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  toto-config-api:
+    build: .
+    environment:
+      MONGO_URI:  mongodb://${MONGO_DB_ROOT_USERNAME}:${MONGO_DB_ROOT_PASSWORD}@mongodb:27017/${MONGO_DB_DATABASE}?authSource=admin
+      MONGO_USER: ${MONGO_DB_ROOT_USERNAME}
+      MONGO_PASSWORD: ${MONGO_DB_ROOT_PASSWORD}
+      MONGO_DATABASE: ${MONGO_DB_DATABASE}
+      MONGO_COLLECTION: ${MONGO_DB_COLLECTION}
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:latest
+    environment:
+          MONGO_URI:  mongodb://${MONGO_DB_ROOT_USERNAME}:${MONGO_DB_ROOT_PASSWORD}@mongodb:27017/${MONGO_DB_DATABASE}?authSource=admin
+          MONGO_INITDB_ROOT_USERNAME: ${MONGO_DB_ROOT_USERNAME}
+          MONGO_INITDB_ROOT_PASSWORD: ${MONGO_DB_ROOT_PASSWORD}
+          MONGO_DATABASE: ${MONGO_DB_DATABASE}
+          MONGO_COLLECTION: ${MONGO_DB_COLLECTION}
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  mongo-seed:
+    image: mongo
+    depends_on:
+      - mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_DB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_DB_ROOT_PASSWORD}
+    volumes:
+      - ./mongo-seed:/mongo-seed
+    command: >
+      /bin/bash -c "
+        mongoimport --host mongodb --db ${MONGO_DB_DATABASE} --collection ${MONGO_DB_COLLECTION} --type json --file /mongo-seed/config_data.json --jsonArray --authenticationDatabase admin -u ${MONGO_DB_ROOT_USERNAME} -p ${MONGO_DB_ROOT_PASSWORD};
+        echo 'MongoDB has been seeded!'"
+
+
+volumes:
+  mongo-data:
