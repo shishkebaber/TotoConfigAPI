@@ -14,20 +14,20 @@ Clone the repository and navigate into the project directory.
 
 Start the service with Docker Compose:
 
-'''docker-compose up --build'''
+``` docker-compose up --build ```
 
 The API is now accessible at http://localhost:8080/api/configs
 
 ## API Usage
 Retrieve configurations:
 
-GET /api/configs?package=<package_name>
+``` GET /api/configs?package=<package_name> ```
 
 ## Testing
 
 Run unit tests by executing:
 
-'''go test ./...'''
+``` go test ./... ```
 
 ## Note
 
