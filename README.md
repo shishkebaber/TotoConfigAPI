@@ -1,5 +1,5 @@
 ### TotoConfigAPI - Test Task
-TotoConfigAPI is a Go-based web service designed for managing configuration settings, developed as a test task for a Golang developer role. It leverages MongoDB for data storage, with the database environment fully configured in Docker Compose for ease of setup and deployment.
+TotoConfigAPI is a Go-based web service designed for managing configuration settings, developed as a test task for a Golang developer role. It leverages MongoDB for data storage, with the database environment fully configured in Docker Compose.
 
 ## Features
 RESTful API for configuration management.

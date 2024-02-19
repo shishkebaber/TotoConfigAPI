@@ -16,8 +16,6 @@ func main() {
 	mongoDBDatabase := os.Getenv("MONGO_DATABASE")
 	mongoDBCollection := os.Getenv("MONGO_COLLECTION")
 
-	log.Printf("MONGO URI: %s", mongoDBURI)
-
 	mongoDB, err := db.NewMongoDB(mongoDBURI, mongoDBDatabase, mongoDBCollection)
 	if err != nil {
 		log.Fatalf("Failed to connect to MongoDB: %v", err)
